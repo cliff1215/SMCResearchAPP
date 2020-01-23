@@ -31,6 +31,7 @@ const initSeriesList = (dbSeries) => {
 const SeriesList = (props) => {
 	const { activeStudyDbId } = useContext(ActiveStudyContext);
 	const [ series, setSeries ] = useState([]);
+
 	const tableCols = [
 		{ title: 'Series number', dataIndex: 'series_number' },
 		{ title: 'Series date', dataIndex: 'series_date' },
@@ -38,6 +39,7 @@ const SeriesList = (props) => {
 		{ title: 'Modality', dataIndex: 'modality' },
 		{ title: 'Body part', dataIndex: 'body_part' },
 		{ title: 'Series desc.', dataIndex: 'series_description' },
+		{ title: 'Images', dataIndex: 'images' },
 		{ title: 'Protocol name', dataIndex: 'protocol_name' },
 		{ title: 'Comment', dataIndex: 'comment' }
 	];
@@ -46,9 +48,7 @@ const SeriesList = (props) => {
 		() => {
 			axios
 				.get(`http://localhost:5000/api/series/${activeStudyDbId}`)
-				.then((res) => {
-					setSeries(initSeriesList(res.data));
-				})
+				.then((res) => setSeries(initSeriesList(res.data)))
 				.catch((err) => console.log(err));
 		},
 		[ activeStudyDbId ]
