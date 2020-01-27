@@ -5,14 +5,15 @@ import SeriesList from './SeriesList';
 import ImageRender from './ImageRender';
 
 const ProjectStudyList = (props) => {
+	const [ activeStudyDbId, setActiveStudyDbId ] = useState(0);
 	const [ activeSeriesDbId, setActiveSeriesDbId ] = useState(0);
 
 	return (
 		<div className="project-studylist">
-			<StudyList />
-			<Row>
+			<StudyList setActiveStudyDbId={setActiveStudyDbId} />
+			<Row gutter={10}>
 				<Col span={18}>
-					<SeriesList setActiveSeriesDbId={setActiveSeriesDbId} />
+					<SeriesList activeStudyDbId={activeStudyDbId} setActiveSeriesDbId={setActiveSeriesDbId} />
 				</Col>
 				<Col span={6}>
 					<ImageRender activeSeriesDbId={activeSeriesDbId} />

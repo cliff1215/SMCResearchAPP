@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
-import { ActiveStudyContext } from '../contexts/ActiveStudyContext';
 import axios from 'axios';
 
 const initStudyList = (dbStudies) => {
@@ -36,7 +35,7 @@ const initStudyList = (dbStudies) => {
 };
 
 const StudyList = (props) => {
-	const { setActiveStudyDbId } = useContext(ActiveStudyContext);
+	const { setActiveStudyDbId } = props;
 	const [ studies, setStudies ] = useState([]);
 
 	const tableCols = [
