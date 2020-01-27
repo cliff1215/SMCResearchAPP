@@ -30,6 +30,7 @@ const initSeriesList = (dbSeries) => {
 
 const SeriesList = (props) => {
 	const { activeStudyDbId } = useContext(ActiveStudyContext);
+	const { setActiveSeriesDbId } = props;
 	const [ series, setSeries ] = useState([]);
 
 	const tableCols = [
@@ -39,9 +40,9 @@ const SeriesList = (props) => {
 		{ title: 'Modality', dataIndex: 'modality' },
 		{ title: 'Body part', dataIndex: 'body_part' },
 		{ title: 'Series desc.', dataIndex: 'series_description' },
-		{ title: 'Images', dataIndex: 'images' },
 		{ title: 'Protocol name', dataIndex: 'protocol_name' },
-		{ title: 'Comment', dataIndex: 'comment' }
+		{ title: 'Images', dataIndex: 'images' }
+		// { title: 'Comment', dataIndex: 'comment' }
 	];
 
 	useEffect(
@@ -53,7 +54,17 @@ const SeriesList = (props) => {
 		},
 		[ activeStudyDbId ]
 	);
-	return <Table dataSource={series} columns={tableCols} />;
+	return (
+		<Table
+			dataSource={series}
+			columns={tableCols}
+			onRow={(record, rowIndex) => {
+				return {
+					onClick: (event) => setActiveSeriesDbId(record.key)
+				};
+			}}
+		/>
+	);
 };
 
 export default SeriesList;
