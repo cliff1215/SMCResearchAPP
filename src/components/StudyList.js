@@ -64,6 +64,7 @@ const StudyList = (props) => {
 		<Table
 			dataSource={studies}
 			columns={tableCols}
+			pagination={{ pageSize: 5 }}
 			onRow={(record, rowIndex) => {
 				return {
 					onClick: (event) => setActiveStudyDbId(record.key)

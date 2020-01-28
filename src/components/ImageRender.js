@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const imgStyle = {
 	width: '100%',
-	height: '100%',
+	height: 'auto',
 	objectFit: 'contain',
 	background: 'black'
 };
